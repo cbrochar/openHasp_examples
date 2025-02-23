@@ -1,0 +1,117 @@
+code_button:
+  variables:
+    codelength: 4
+    alarmpanel: alarm_control_panel.alarm
+    curr_code: string
+    armhomeservice: alarm_arm_home
+    armnightservice: alarm_arm_home
+    armawayservice: alarm_arm_away
+    armvacaservice: alarm_arm_away
+    disarmservice: alarm_disarm
+  sequence:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{(text == ''Arm Away'') and (states(alarmpanel) == ''disarmed'')}}'
+      sequence:
+      - data:
+          entity_id: alarm_control_panel.alarm
+          code: '{%- set code = namespace() -%}  {%- set code.value = states("input_number.alarmcode_"
+            ~ codelength)|int -%}  {%- for i in range(1,codelength) -%} {%- set code.value
+            =  code.value|int * 10 + (states("input_number.alarmcode_" ~ (codelength
+            - i))|int) -%} {%- endfor -%} {{code.value|int}}'
+        action: '{{''alarm_control_panel.'' ~ armawayservice}}'
+      - repeat:
+          count: '{{codelength}}'
+          sequence:
+          - data:
+              entity_id: input_number.alarmcode_{{repeat.index}}
+              value: -1
+            action: input_number.set_value
+    - conditions:
+      - condition: template
+        value_template: '{{(text == ''Arm Vaca'') and (states(alarmpanel) == ''disarmed'')}}'
+      sequence:
+      - data:
+          entity_id: alarm_control_panel.alarm
+          code: '{%- set code = namespace() -%}  {%- set code.value = states("input_number.alarmcode_"
+            ~ codelength)|int -%}  {%- for i in range(1,codelength) -%} {%- set code.value
+            =  code.value|int * 10 + (states("input_number.alarmcode_" ~ (codelength
+            - i))|int) -%} {%- endfor -%} {{code.value|int}}'
+        action: '{{''alarm_control_panel.'' ~ armawayservice}}'
+      - repeat:
+          count: '{{codelength}}'
+          sequence:
+          - data:
+              entity_id: input_number.alarmcode_{{repeat.index}}
+              value: -1
+            action: input_number.set_value
+    - conditions:
+      - condition: template
+        value_template: '{{(text == ''Arm Home'') and (states(alarmpanel) == ''disarmed'')}}'
+      sequence:
+      - data:
+          entity_id: alarm_control_panel.alarm
+          code: '{%- set code = namespace() -%}  {%- set code.value = states("input_number.alarmcode_"
+            ~ codelength)|int -%}  {%- for i in range(1,codelength) -%} {%- set code.value
+            =  code.value|int * 10 + (states("input_number.alarmcode_" ~ (codelength
+            - i))|int) -%} {%- endfor -%} {{code.value|int}}'
+        action: '{{''alarm_control_panel.'' ~ armhomeservice}}'
+      - repeat:
+          count: '{{codelength}}'
+          sequence:
+          - data:
+              entity_id: input_number.alarmcode_{{repeat.index}}
+              value: -1
+            action: input_number.set_value
+    - conditions:
+      - condition: template
+        value_template: '{{(text == ''Arm Night'') and (states(alarmpanel) == ''disarmed'')}}'
+      sequence:
+      - data:
+          entity_id: alarm_control_panel.alarm
+          code: '{%- set code = namespace() -%}  {%- set code.value = states("input_number.alarmcode_"
+            ~ codelength)|int -%}  {%- for i in range(1,codelength) -%} {%- set code.value
+            =  code.value|int * 10 + (states("input_number.alarmcode_" ~ (codelength
+            - i))|int) -%} {%- endfor -%} {{code.value|int}}'
+        action: '{{''alarm_control_panel.'' ~ armhomeservice}}'
+      - repeat:
+          count: '{{codelength}}'
+          sequence:
+          - data:
+              entity_id: input_number.alarmcode_{{repeat.index}}
+              value: -1
+            action: input_number.set_value
+    - conditions:
+      - condition: template
+        value_template: '{{text == ''Disarm'' }}'
+      sequence:
+      - data:
+          entity_id: alarm_control_panel.alarm
+          code: '{%- set code = namespace() -%}  {%- set code.value = states("input_number.alarmcode_"
+            ~ codelength)|int -%}  {%- for i in range(1,codelength) -%} {%- set code.value
+            =  code.value|int * 10 + (states("input_number.alarmcode_" ~ (codelength
+            - i))|int) -%} {%- endfor -%} {{code.value|int}}'
+        action: '{{''alarm_control_panel.'' ~ disarmservice}}'
+      - repeat:
+          count: '{{codelength}}'
+          sequence:
+          - data:
+              entity_id: input_number.alarmcode_{{repeat.index}}
+              value: -1
+            action: input_number.set_value
+    default:
+    - repeat:
+        count: '{{(codelength|int) - 1}}'
+        sequence:
+        - action: input_number.set_value
+          data:
+            entity_id: input_number.alarmcode_{{(codelength|int) - repeat.index +
+              1}}
+            value: '{{states("input_number.alarmcode_" ~ ((codelength|int) - repeat.index))|int}}'
+    - action: input_number.set_value
+      data:
+        entity_id: input_number.alarmcode_1
+        value: '{{text|int}}'
+  alias: code_button
+  description: ''

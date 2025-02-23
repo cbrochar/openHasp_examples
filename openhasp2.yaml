@@ -1,0 +1,62 @@
+objects:
+# All Pages: Datetime
+  - obj: "p0b4"
+    properties:
+      "val": "{{states('openhasp.openhasp2') | int(0) -1}}"
+  - obj: "p0b10"
+    properties:
+      "text": '{{ as_timestamp(now())|timestamp_custom("%Y/%m/%d %I:%M %p") }}'
+
+  - obj: "p0b5" # temperature label on all pages
+    properties:
+      "text": "{{ state_attr('weather.ecobee','temperature') |string + '°F'}}"
+
+  - obj: "p0b6" #time
+    properties:
+      "text": "{{ states('sensor.time') }}"
+
+  - obj: "p0b7"
+    properties:
+      "text_color": "{% if -50 <= state_attr('openhasp.openhasp2','rssi') | int(0) %}green{% elif -51 > state_attr('openhasp.openhasp2','rssi') | int(0) >= -60 %}olive{% elif -61 > state_attr('openhasp.openhasp2','rssi') | int(0) >= -70 %}orange{% elif -71 > state_attr('openhasp.openhasp2','rssi') |int (0) >= -80 %}maroon{% else %}red{% endif %}"
+
+  - obj: "p0b9" # temp Thermometer display
+    properties:
+      "text_color": "{% if state_attr('weather.ecobee','temperature') |int <= 30  %}yellow
+        {% elif 30 < state_attr('weather.ecobee','temperature') |int <= 40  %}blue
+        {% elif 40 < state_attr('weather.ecobee','temperature') |int <= 90 %}green
+        {% else %}red{% endif %}"
+
+
+#Page 3 - Alarm Panel
+
+  - obj: "p3b14" # Alarm Status
+    properties:
+      "text": >
+                {% if states("alarm_control_panel.alarm") == "armed_home" %}
+                Armed Home
+                {% elif states("alarm_control_panel.alarm")== "armed_away"  %}
+                Armed Away
+                {% elif states("alarm_control_panel.alarm")== "armed_vacation"  %}
+                Armed Vacation
+                {% elif states("alarm_control_panel.alarm")== "armed_night" %}
+                Armed Night
+                {% else %}
+                Disarmed
+                {% endif %}
+  - obj: "p3b13" #alarm icon
+    properties: 
+      "text": '{{"\uE68A" if is_state("alarm_control_panel.alarm", "disarmed") else "\uE565" | e }}'
+      "text_color": '{{"#00ff7b " if is_state("alarm_control_panel.alarm", "disarmed") else "#FF0000" | e }}'
+  - obj: "p3b1" #keypad
+    event:
+      "down":
+        sequence:
+          action: script.turn_on
+          target: 
+            entity_id: script.code_button
+          data: 
+            variables:
+              value: "{{ val }}"
+              text: "{{ text }}"
+              haspname: "{{state_attr('openhasp.openhasp2','friendly_name')}}"
+              haspMAC: "{{state_attr('openhasp.openhasp2','mac')}}"

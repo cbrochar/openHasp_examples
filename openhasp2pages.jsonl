@@ -1,0 +1,33 @@
+{"page":0,"comment":"---------- All Pages ----------"}
+{"id":24,"action":{"down":"page 6"},"obj":"btn","x":000,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue493","text_color":"#978B7D","text_font":64}
+{"id":25,"action":{"down":"page 2"},"obj":"btn","x":115,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ufa74","text_color":"#978B7D","text_font":64}
+{"id":01,"action":{"down":"page prev"},"obj":"btn","x":230,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue141","text_color":"#978B7D","text_font":64}
+{"id":02,"action":{"down":"page 1"},"obj":"btn","x":345,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue595","text_color":"#978B7D","text_font":64}
+{"id":03,"action":{"down":"page next"},"obj":"btn","x":460,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue142","text_color":"#978B7D","text_font":64}
+{"id":26,"action":{"down":"page 4"},"obj":"btn","x":575,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue6B5","text_color":"#978B7D","text_font":64}
+{"id":27,"action":{"down":"page 5"},"obj":"btn","x":690,"y":400,"w":110,"h":80,"bg_opa":180,"bg_color":"#000000","border_color":"#C7BAA7","border_width":2,"radius":10,"radius1":10,"radius2":10,"text":"\ue6e8","text_color":"#978B7D","text_font":64}
+
+{"id":04,"obj":"roller","click":false,"x":0,"y":-1,"w":800,"text_line_space":10,"bg_opa1":180,"bg_opa2":0,"border_width1":0,"val":0,"rows":1,"options":"WEATHER\nENERGY\nALARM\nLIGHTS\nRGB LIGHTS\nSETTINGS\n","text_font":24,"bg_color1":"#000000","text_color1":"#FFFFFF","bg_color":"#000000","text_color":"#000000","border_side":0,"radius":3}
+
+{"id":05,"obj":"label","x":707,"y":0,"h":40,"w":90,"bg_opa":0,"text":"95.0°F","align":"right","bg_color":"#2C3E50","text_color":"white","text_font":32}
+
+{"id":06,"obj":"label","x":50,"y":0,"w":250,"h":40,"bg_opa":0,"text":"00:00","bg_color":"#2C3E50","text_color":"white","align":"left","text_font":28}
+
+{"id":10,"obj":"label","x":160,"y":0,"w":250,"h":30,"bg_opa":0,"text":"Jan 1 2100","template":"%b %e, %Y","bg_color":"#2C3E50","text_color":"white","align":"left","text_font":28}
+{"id":07,"obj":"label","x":05,"y":6,"w":40,"h":30,"bg_opa":0,"text":"\ue5a9","bg_color":"#2C3E50","text_color":"pink","text_font":20}
+{"id":08,"obj":"label","x":25,"y":6,"w":40,"h":30,"bg_opa":0,"text":"\ue004","bg_color":"#2C3E50","text_color":"green","text_font":20}
+
+{"id":09,"obj":"label","x":625,"y":3,"h":40,"w":90,"bg_opa":0,"text":"\ue50f","align":"right","bg_color":"#2C3E50","text_color":"red","text_font":35}
+
+
+{"page":3,"comment":" ----------- Page 3 layout - Alarm Panel ------------"}
+
+{"id":1,"obj":"btnmatrix","x":12,"y":40,"w":500,"h":340,"options":["1","2","3","\n","4","5","6","\n","7","8","9","\n","Arm Home","0","Arm Away","\n","Arm Night", "Arm Vaca", "Disarm"],"toggle":false,"one_check":false}
+{"id":2,"obj":"label","x":104,"y":22,"h":80,"w":100,"text":"    ","text_color":"white","align":0,"bg_color":"#2C3E50"}
+{"id":13,"obj":"label","x":600,"y":100,"w":350,"h":350,"text":"\uE09A", "mode":"expand","text_font": 120, "text_color":"#e88c03"}
+{"id":14,"obj":"label","x":500,"y":255,"w":320,"h":80,"text":"Unavailalbe", "text_font": 52, "mode":"break","align":"center"}
+
+
+
+{"page":3,"id":0,"next":3}
+{"page":3,"id":0,"prev":3}
